@@ -6,15 +6,18 @@ import { existsSync } from 'fs'
 
 const args = process.argv.slice(2)
 
+const baseCommand = process.argv.slice(0,2).map(item => item.split('/').pop()).join(' ')
+const usageInstructions = `Usage: ${baseCommand} <content-path> <dist-path>`
+
 if (args.length !== 2) {
-    console.error('Usage: node generate.js <content-path> <dist-path>')
+    console.error(usageInstructions)
     process.exit(1)
 }
 
 const [contentPath, distPath] = args
 
 if (!contentPath || !distPath) {
-    console.error('Usage: node generate.js <content-path> <dist-path>')
+    console.error(usageInstructions)
     process.exit(1)
 }
 
